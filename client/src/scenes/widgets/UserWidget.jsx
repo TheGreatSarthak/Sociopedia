@@ -24,10 +24,13 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` }, //verifying token from middleware auth.js
-    });
+    const response = await fetch(
+      `https://sociopedia-wheat.vercel.app/users/${userId}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` }, //verifying token from middleware auth.js
+      }
+    );
     const data = await response.json();
     setUser(data);
   };

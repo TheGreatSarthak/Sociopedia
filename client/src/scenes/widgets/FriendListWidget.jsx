@@ -14,7 +14,7 @@ const FriendListWidget = ({ userId, isProfile }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${userId}/friends`,
+      `https://sociopedia-wheat.vercel.app/users/${userId}/friends`,
       {
         method: "GET",
         headers: {

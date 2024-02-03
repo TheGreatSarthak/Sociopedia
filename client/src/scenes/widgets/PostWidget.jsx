@@ -38,14 +38,17 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
+    const response = await fetch(
+      `https://sociopedia-wheat.vercel.app/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: loggedInUserId }),
+      }
+    );
     const updatePost = await response.json();
     dispatch(setPost({ post: updatePost })); //replacing the previous post with this post
   };
@@ -63,7 +66,7 @@ const PostWidget = ({
       </Typography>
       {picturePath && (
         <img
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`https://sociopedia-wheat.vercel.app/assets/${picturePath}`}
           alt="post"
           width="100%"
           height="auto"
