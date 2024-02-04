@@ -64,11 +64,17 @@ const Form = () => {
       formData.append(value, values[value]);
     }
     formData.append("picturePath", values.picture.name);
+
+    const formDataJson = {};
+    formData.forEach((value, key) => {
+      formDataJson[key] = value;
+    });
     const savedUserResponse = await fetch(
       "https://sociopedia-wheat.vercel.app/auth/register",
       {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formDataJson),
       }
     );
     const savedUser = await savedUserResponse.json();
@@ -136,7 +142,7 @@ const Form = () => {
             }}
           >
             {isRegister && (
-              <div>
+              <>
                 <TextField
                   label="First Name"
                   onBlur={handleBlur}
@@ -224,7 +230,7 @@ const Form = () => {
                     )}
                   </Dropzone>
                 </Box>
-              </div>
+              </>
             )}
             <TextField
               label="Email"
