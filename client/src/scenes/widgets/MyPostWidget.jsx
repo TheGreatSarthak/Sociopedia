@@ -47,10 +47,18 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
 
+    const formDataJson = {};
+    formData.forEach((value, key) => {
+      formDataJson[key] = value;
+    });
+
     const response = await fetch("https://sociopedia-wheat.vercel.app/posts", {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formDataJson),
     });
     const posts = await response.json();
     dispatch(setPosts({ posts }));

@@ -12,14 +12,16 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, isProfile }) => {
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
+  const isFriend =
+    friends.length > 0
+      ? friends.find((friend) => friend._id === friendId)
+      : null;
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
-
-  const isFriend = friends.find((friend) => friend._id === friendId);
 
   const patchFriend = async () => {
     const response = await fetch(

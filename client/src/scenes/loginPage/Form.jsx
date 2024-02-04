@@ -69,6 +69,7 @@ const Form = () => {
     formData.forEach((value, key) => {
       formDataJson[key] = value;
     });
+
     const savedUserResponse = await fetch(
       "https://sociopedia-wheat.vercel.app/auth/register",
       {
@@ -104,10 +105,11 @@ const Form = () => {
           token: loggedIn.token,
         })
       );
-      alert(
-        "This application is still in development mode. Feel free to test and explore."
-      );
       navigate("/home");
+      loggedIn.user &&
+        alert(
+          "This application is still in development mode. Feel free to test and explore."
+        );
     }
   };
 
