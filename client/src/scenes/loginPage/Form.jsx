@@ -136,7 +136,7 @@ const Form = () => {
             }}
           >
             {isRegister && (
-              <>
+              <div>
                 <TextField
                   label="First Name"
                   onBlur={handleBlur}
@@ -224,7 +224,7 @@ const Form = () => {
                     )}
                   </Dropzone>
                 </Box>
-              </>
+              </div>
             )}
             <TextField
               label="Email"
